@@ -1,3 +1,5 @@
+# Script principal para scraping de antigüedades
+# Aquí va el código principal del scraper.
 # -*- coding: utf-8 -*-
 """
 Antiques.py
@@ -53,13 +55,13 @@ USERNAME_FIELD = "ctl00_ContentPlaceHolderBody_username"  # user field id
 PASSWORD_FIELD = "ctl00_ContentPlaceHolderBody_password"  # password field id
 LOGIN_BUTTON = "ctl00_ContentPlaceHolderBody_Button1"     # login button id
 
-# Navigation constants
-START_PAGE = 1  # Start from the first page
-END_PAGE = 43   # Last page to process
-MAX_RETRIES = 5  # Max navigation retries
-WAIT_BETWEEN_PAGES = 4  # Wait between pages (seconds)
-WAIT_AFTER_REFRESH = 3  # Wait after refresh (seconds)
-WAIT_BETWEEN_ROWS = 1   # Wait between rows (seconds)
+# Constantes de navegación
+START_PAGE = 31  # Página donde quieres empezar
+END_PAGE = 43    # Última página a procesar
+MAX_RETRIES = 5  # Número máximo de intentos para navegación
+WAIT_BETWEEN_PAGES = 4  # Aumentado a 4 segundos
+WAIT_BETWEEN_ROWS = 1  # Espera entre filas
+WAIT_AFTER_REFRESH = 3  # Espera después de recargar la página
 
 # Create output folder if it does not exist
 os.makedirs('output', exist_ok=True)
@@ -143,8 +145,8 @@ except Exception as e:
     driver.quit()
     exit(1)
 
-# Small pause to ensure everything is loaded
-time.sleep(5)  # Wait 5 seconds before starting
+# Pequeña pausa para asegurar que todo está cargado
+time.sleep(5)  # Espera 5 segundos antes de comenzar
 
 def get_item_images_from_td(td):
     images = []
@@ -231,7 +233,7 @@ def summarize_description(html):
     return summary or text[:200]
 
 all_data = []
-page = START_PAGE  # Start from the first page
+page = 21  # Página de inicio - Cambiado para comenzar desde la página 21
 
 wait.until(EC.presence_of_element_located((By.TAG_NAME, "table")))
 
@@ -379,10 +381,10 @@ def navigate_to_start_page():
         print(f"❌ Error durante la navegación: {e}")
         return False
 
-# Start extraction process
-print("\n=== STARTING EXTRACTION PROCESS ===")
-print(f"[INFO] Loaded data: {len(all_data)} items")
-print(f"[INFO] Starting from page {START_PAGE}")
+# Iniciar proceso de extracción
+print("\n=== INICIANDO PROCESO DE EXTRACCIÓN ===")
+print(f"📊 Datos existentes cargados: {len(all_data)} items")
+print(f"� Comenzando desde la página {START_PAGE}")
 
 try:
     driver.get(ITEMS_URL)
@@ -509,7 +511,7 @@ try:
     # Ahora sí, iniciar el bucle principal
     while True:
         try:
-    print(f"\n--- Processing page {page} ---")
+            print(f"\n--- Procesando página {page} ---")
             # Navega y verifica que realmente estamos en la página correcta
             for nav_attempt in range(5):
                 go_to_page(page)
@@ -770,7 +772,7 @@ try:
             else:
                 print(f"[DEBUG] Página {page} - No se procesaron items")
                     
-            print(f"[INFO] Page {page} processed with {len(rows)-1} items found")
+            print(f"✅ Página {page} procesada completamente con {len(rows)-1} items encontrados")
             
             # Intentar avanzar a la siguiente página
             next_page = page + 1
@@ -791,14 +793,14 @@ try:
                 print("🔚 No hay más páginas disponibles")
                 break
 
-            print(f"[INFO] Processing page {page}")
+            print(f"📄 Procesando página {page}")
             # ...verificación y scraping de la nueva página...
 
         except KeyboardInterrupt:
             print("[INTERRUPT] Script interrupted by user. Saving backup...")
             break
         except Exception as e:
-            print(f"[ERROR] General error on page {page}: {str(e)}")
+            print(f"[ERROR] Error general en la página {page}: {str(e)}")
             try:
                 driver.refresh()
                 time.sleep(2)
