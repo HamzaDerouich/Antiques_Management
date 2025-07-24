@@ -1,69 +1,58 @@
-# Estructura de Scripts
+🏺 Antiques Management Project – Data Cleaning & Project Setup ✅
+✔️ Task Completed: Data Cleaning and Project Organization
+The first task of the project — cleaning the scraped data and organizing the repository — has been successfully completed.
+All files are now structured and ready for migration to the new platform.
 
-Esta carpeta contiene los scripts organizados por dominio y función:
+🔗 Repository: https://github.com/HamzaDerouich/Antiques_Management
 
-- `scraping/`: Extracción de datos web
-- `data_processing/`: Procesamiento y conversión de datos
-- `config/`: Configuración y credenciales
-- `tests/`: Pruebas y validaciones
-- `backup/`: Gestión de copias de seguridad
-
-Cada script está nombrado para reflejar su propósito y facilitar la entrega y el mantenimiento.
-
----
-
-# Antiques Management Project
-
-**Task Completed: Data Cleaning and Project Organization**
-
-The data cleaning and project organization task has been successfully completed. The repository is now available in the cloud:
-
-Repository: https://github.com/HamzaDerouich/Antiques_Management
-
-## Project Structure
-```
-Antiques.py
+📁 Project Structure
+graphql
+Copiar
+Editar
+Antiques.py                 # Main script launcher
 CSV_FILES/
-    items_all_.csv
-    items_all__clean.csv
-    4am_migration_items_all__clean.csv
+├── items_all_.csv          # Original extracted data
+├── items_all__clean.csv    # Cleaned version (ready for migration)
+├── 4am_migration_items_all__clean.csv  # Final migration-ready export
 Scripts/
-    backup/
-        backup_manager.py
-    config/
-        login_config.py
-    data_processing/
-        clean_csv_name_column.py
-        csv_to_json.py
-        data_validator.py
-        json_to_woocommerce_csv.py
-    output/
-        items_all.csv
-        items_all.json
-        items_backup_final.json
-    scraping/
-        Antiques_original.py
-        antiques_scraper.py
-        optimized_scraper.py
-        robust_scraper.py
-        sequential_scraper.py
-        stable_scraper.py
-    tests/
-        antiques_test.py
-        import_pytest.py
-```
+├── backup/
+│   └── backup_manager.py           # Handles file backup and versioning
+├── config/
+│   └── login_config.py             # Credentials and configuration
+├── data_processing/
+│   ├── clean_csv_name_column.py   # Cleans "Name" column formatting
+│   ├── csv_to_json.py             # Converts CSV to JSON
+│   ├── data_validator.py          # Validates data structure and consistency
+│   └── json_to_woocommerce_csv.py # Converts JSON to WooCommerce-compatible CSV
+├── output/
+│   ├── items_all.csv
+│   ├── items_all.json
+│   └── items_backup_final.json
+├── scraping/
+│   ├── Antiques_original.py
+│   ├── antiques_scraper.py
+│   ├── optimized_scraper.py
+│   ├── robust_scraper.py
+│   ├── sequential_scraper.py
+│   └── stable_scraper.py
+└── tests/
+    ├── antiques_test.py
+    └── import_pytest.py
+🧼 Summary of Work
+Cleaned the main dataset items_all_.csv by removing problematic characters from the Name column.
 
-## Summary
-- The main data source (`items_all_.csv`) was cleaned, removing the ID prefix and problematic characters from the Name column, while keeping the ID column unchanged.
-- The cleaned file (`items_all__clean.csv`) is ready for migration and professional use.
-- The project is fully modular, with scripts organized by functionality (processing, scraping, backup, tests, etc.).
-- All changes and files are available in the cloud repository.
+Preserved the original ID column and ensured compatibility with future WooCommerce imports.
 
----
+Final cleaned file: items_all__clean.csv, available in CSV_FILES/ and output/.
 
-## Next Objective
-Starting today, the main goal is to extract (scrape) all data from the old 4am website to prepare it for migration and use in the new platform. All relevant information will be captured and structured for the new site.
+Scripts were modularized and organized by domain:
 
----
+scraping/: Data extraction
 
-This task is now finished. I will begin with the new assignment as described above.
+data_processing/: Formatting and conversions
+
+config/: Credentials and config
+
+backup/: File versioning
+
+tests/: Unit testing and validation
